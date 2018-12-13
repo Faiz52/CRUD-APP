@@ -10,7 +10,7 @@ if(isset($_GET['update'])){
     $id = $_GET['update'];
     
 
-$query = "SELECT * FROM student";
+$query = "SELECT * FROM student WHERE id = $id";
 
 $result = mysqli_query($conn,$query);
 
