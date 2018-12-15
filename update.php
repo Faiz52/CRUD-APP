@@ -18,7 +18,6 @@ if(mysqli_num_rows($result) > 0){
     
     while($row = mysqli_fetch_array($result)){
         
-        
         $name  = $row['name'];
         $batch = $row['batch'];
         $email = $row['email'];
@@ -29,14 +28,14 @@ if(mysqli_num_rows($result) > 0){
 
 if(isset($_POST['update'])){
     
-    $name  = $_POST['name'];
-    $batch = $_POST['batch'];
-    $email = $_POST['email'];
+    $name  = clean($_POST['name']);
+    $batch = clean($_POST['batch']);
+    $email = clean($_POST['email']);
     
     $query  = "UPDATE student SET ";
-    $query .= "name = '{$name}', ";
-    $query .= "batch = '{$batch}', ";
-    $query .= "email = '{$email}' ";
+    $query .= "name = '".escape($name)."', ";
+    $query .= "batch = '".escape($batch)."', ";
+    $query .= "email = '".escape($email)."' ";
     $query .= "WHERE id = {$id} ";
     
     $result = mysqli_query($conn,$query);
