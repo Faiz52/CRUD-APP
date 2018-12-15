@@ -5,11 +5,11 @@ include 'db.php';
 
 if(isset($_POST['insert'])){
     
-    $name  = $_POST['name'];
-    $batch = $_POST['batch'];
-    $email = $_POST['email'];
+    $name  = clean($_POST['name']);
+    $batch = clean($_POST['batch']);
+    $email = clean($_POST['email']);
     
-    $query = "INSERT INTO `student` (name,batch,email) VALUES ('$name','$batch','$email') ";
+    $query = "INSERT INTO `student` (name,batch,email) VALUES ('".escape($name)."','".escape($batch)."','".escape($email)."') ";
     
     $result = mysqli_query($conn,$query);
     
